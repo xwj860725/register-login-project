@@ -1,0 +1,45 @@
+/* 全局样式 */
+body {
+  background-color: #8B0000;
+  /* 红色背景 */
+  color: #000;
+  /* 黑色文字 */
+  font-family: Arial, sans-serif;
+}
+
+/* 容器样式 */
+.container {
+  background-color: #fff;
+  /* 白色背景 */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+/* 输入框样式 */
+.form-control {
+  border: 2px solid #FFA500 !important;
+  /* 黄色边框 */
+  background-color: #fff !important;
+  /* 白色背景 */
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* 提交按钮样式 */
+.btn-primary {
+  background-color: #FFA500 !important;
+  /* 黄色按钮 */
+  border: none;
+  color: #000;
+  /* 黑色文字 */
+  font-size: 16px;
+}
+
+.btn-primary:hover {
+  background-color: #FF8C00 !important;
+  /* 橙色按钮 */
+}
