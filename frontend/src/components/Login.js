@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import '../App.css'; // 确保路径正确
-import { useNavigate } from 'react-router-dom'; // 导入 useNavigate 钩子
+import '../App.css'; 
+import { useNavigate } from 'react-router-dom'; 
 
-const Login = ({ setUsername }) => { // 从父组件接收 setUsername 函数
+const Login = ({ setUsername }) => { 
     const [formData, setFormData] = useState({
         username: '',
         password: '',
     });
 
-    const [message, setMessage] = useState(''); // 用于显示反馈消息
-    const navigate = useNavigate(); // 初始化 navigate 函数
+    const [message, setMessage] = useState(''); 
+    const navigate = useNavigate(); 
 
     const handleChange = (e) => {
         setFormData({
@@ -19,7 +19,7 @@ const Login = ({ setUsername }) => { // 从父组件接收 setUsername 函数
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // 阻止默认表单提交行为
+        e.preventDefault(); 
 
         try {
             const response = await fetch('http://localhost:5000/login', {
@@ -27,20 +27,20 @@ const Login = ({ setUsername }) => { // 从父组件接收 setUsername 函数
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData), // 将表单数据转为 JSON 字符串
+                body: JSON.stringify(formData), 
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                setMessage(data.message); // 登录成功消息
-                setUsername(formData.username); // 保存用户名到父组件状态
-                navigate('/profil'); // 跳转到 Profil 页面
+                setMessage(data.message); 
+                setUsername(formData.username); 
+                navigate('/profil'); 
             } else {
-                setMessage(data.message); // 登录失败消息
+                setMessage(data.message); 
             }
         } catch (error) {
-            console.error('登录请求失败:', error);
+            console.error('Login request failed:', error);
             setMessage('An error occurred. Please try again later.');
         }
     };
@@ -79,7 +79,7 @@ const Login = ({ setUsername }) => { // 从父组件接收 setUsername 函数
                     Login
                 </button>
             </form>
-            {/* 显示反馈消息 */}
+            {/* Display feedback messages */}
             {message && <p>{message}</p>}
         </div>
     );
