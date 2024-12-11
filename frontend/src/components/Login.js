@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import '../App.css'; 
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 
 const Login = ({ setUsername }) => { 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({ // Receive the setUsername function from the parent component.
         username: '',
         password: '',
     });
 
-    const [message, setMessage] = useState(''); 
-    const navigate = useNavigate(); 
+    const [message, setMessage] = useState(''); // Display feedback messages
+    const navigate = useNavigate(); // Initialize the navigate function
 
     const handleChange = (e) => {
         setFormData({
@@ -19,7 +19,7 @@ const Login = ({ setUsername }) => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault(); // Block default form submission behavior
 
         try {
             const response = await fetch('http://localhost:5000/login', {
@@ -27,17 +27,17 @@ const Login = ({ setUsername }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData), 
+                body: JSON.stringify(formData), // Convert the form data to a JSON string
             });
 
             const data = await response.json();
 
-            if (response.ok) {
+            if (response.ok) {                 // Login Success Message
                 setMessage(data.message); 
-                setUsername(formData.username); 
-                navigate('/profil'); 
+                setUsername(formData.username); // Save username to parent component state
+                navigate('/profil');             // Go to Profil page
             } else {
-                setMessage(data.message); 
+                setMessage(data.message);   // Failure messages
             }
         } catch (error) {
             console.error('Login request failed:', error);
