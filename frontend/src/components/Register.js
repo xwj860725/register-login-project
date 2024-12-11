@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../App.css'; // 确保路径正确
-import { useNavigate } from 'react-router-dom';  // 通过 React Router 的 useNavigate 方法跳转到 Login 页面
+import '../App.css'; 
+import { useNavigate } from 'react-router-dom';  // Go to the Login page via React Router's useNavigate method
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -9,8 +9,8 @@ const Register = () => {
         password: '',
     });
 
-    const [message, setMessage] = useState(''); // 用于显示反馈消息
-    const navigate = useNavigate(); // 使用 useNavigate 钩子
+    const [message, setMessage] = useState(''); // Display feedback messages
+    const navigate = useNavigate(); // use useNavigate hook
 
     const handleChange = (e) => {
         setFormData({
@@ -34,19 +34,19 @@ const Register = () => {
             const data = await response.json();
 
             if (response.ok) {
-                setMessage(data.message); // 显示成功消息
-                // 注册成功后跳转到 Login 页面
-                setTimeout(() => navigate('/login'), 2000); // 2秒后跳转到登录页面
+                setMessage(data.message); // display success messsage
+                // After successful registration, go to the Login page
+                setTimeout(() => navigate('/login'), 2000); // Go to login page after 2 seconds
             } else if (data.redirectToLogin) {
-                // 如果是已注册用户，显示提示并跳转到 Login 页面
+                // If registered user , go to the Login page
                 setMessage(data.message);
-                setTimeout(() => navigate('/login'), 2000); // 2秒后跳转到登录页面
+                setTimeout(() => navigate('/login'), 2000); //  Go to login page after 2 seconds
             } else {
-                // 其他错误
+                // Other errors
                 setMessage(data.message);
             }
         } catch (error) {
-            console.error('注册请求失败:', error);
+            console.error('Registration request failed:', error);
             setMessage('An error occurred. Please try again later.');
         }
     };
@@ -54,7 +54,7 @@ const Register = () => {
     return (
         <div className="container">
             <h2>Register</h2>
-            {message && <p>{message}</p>} {/* 显示消息 */}
+            {message && <p>{message}</p>} {/* Display message */}
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="username">Username</label>
