@@ -1,0 +1,35 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Lorsque vous poussez dans la branche "main", cette action sera déclenchée
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Récupérer le code du dépôt
+    - name: Récupération du dépôt
+      uses: actions/checkout@v3
+
+    # 2. Configurer l'environnement Node.js
+    - name: Configuration de Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'  # Remplacez par la version de Node.js utilisée dans votre projet
+
+    # 3. Installer les dépendances et construire le frontend
+    - name: Installer et construire le frontend
+      working-directory: ./frontend
+      run: |
+        npm install
+        npm run build
+
+    # 4. Installer les dépendances et démarrer le backend
+    - name: Installer et tester le backend
+      working-directory: ./backend
+      run: |
+        npm install
+        npm start &  # Démarre le serveur backend en arrière-plan
